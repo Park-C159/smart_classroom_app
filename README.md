@@ -1,6 +1,17 @@
-# 智能学伴 · 前端
+# 智能学伴 · 前端（Smart Classroom App）
 
-基于大模型的数学教材智能答疑系统前端，使用 Vue 3 + Element Plus 构建，配套后端见 [smart_classroom_backend](https://github.com/Park-C159/smart_classroom_backend)。
+> 面向本科生数学教材的智能答疑系统前端，基于 Vue 3 + Element Plus 构建。
+
+![Vue](https://img.shields.io/badge/Vue-3.4+-4FC08D?logo=vue.js&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
+![Element Plus](https://img.shields.io/badge/Element_Plus-2.7+-409EFF)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
+
+配套后端：[smart_classroom_backend](https://github.com/Park-C159/smart_classroom_backend)
+
+## 简介
+
+智能学伴（Smart Classroom）是一套面向高校数学课程的智能教学辅助系统。本仓库为**前端应用**，提供智能答疑、学情分析、组卷作答、讨论区与私信等交互界面，并通过 REST / SSE 接口与后端通信。
 
 ## 功能页面
 
@@ -37,6 +48,7 @@ frontend/
     ├── stores/                  # Pinia（auth / conversations）
     ├── router/index.js          # 路由（含权限守卫 requiresAuth）
     ├── utils/math.js            # renderMath 等公式渲染工具
+    ├── assets/                  # 全局样式等
     ├── components/              # Layout / ChatBox / MathRenderer / VoiceInput 等
     └── views/
         ├── Login.vue
@@ -44,7 +56,7 @@ frontend/
         ├── teacher/             # ClassAnalytics / QuestionBank / TestQuestionBank / MaterialUpload / ExerciseUpload
         ├── admin/               # Management / UserManagement / KnowledgeTreeEdit / KnowledgeReview / KnowledgeChunks / QuestionBankAdmin / ParseReview
         ├── discussion/          # DiscussionList / DiscussionDetail
-        └── messages/            # MessageList / MessageThread
+        └── messages/            # MessageList（微信式双栏消息）
 ```
 
 ## 快速开始
@@ -86,14 +98,19 @@ npm run build   # 产物输出到 dist/
 npm run preview # 本地预览构建产物
 ```
 
-## 隐私与安全
+## 贡献指南
 
-1. **前端不保存密钥**：所有 API Key（DeepSeek、百度搜索等）均只在后端 `.env` 中配置，前端代码不包含任何密钥。
-2. **XSS 防护**：Markdown 渲染经 DOMPurify 消毒后再注入，避免富文本注入。
-3. **公式渲染离线化**：KaTeX 使用本地字体（`public/katex-fonts/`），不请求外部 CDN，避免资源被拦截或泄露访问信息。
-4. **构建产物不入库**：`dist/`、`node_modules/`、`*.log` 已被 `.gitignore` 排除，请勿提交。
-5. **提交前自查**：`git add` 后确认无 `node_modules/`、`dist/` 被暂存。
+欢迎提交 Issue 与 Pull Request。
 
-## 许可
+1. Fork 本仓库，克隆到本地；
+2. 新建分支：`git checkout -b feature/your-feature`；
+3. 提交改动，遵循既有代码风格（组件按 `views` / `components` 分层，接口封装在 `api/`）；
+4. 推送到你的 Fork，发起 Pull Request 到 `main` 分支。
 
-本仓库为课程/毕业设计项目，未指定开源许可。引用或复用前请先联系作者。
+## 开源许可
+
+本项目采用 [MIT License](LICENSE)。
+
+## 相关项目
+
+- 后端：[smart_classroom_backend](https://github.com/Park-C159/smart_classroom_backend)
